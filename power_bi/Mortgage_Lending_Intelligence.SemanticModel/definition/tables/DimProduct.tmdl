@@ -1,0 +1,25 @@
+table DimProduct
+	lineageTag: 90557152-c627-4106-9005-688e379cd2be
+
+	column loan_type
+		dataType: string
+		lineageTag: 4fda2991-d083-4f27-94f6-9871292ee585
+		summarizeBy: none
+		sourceColumn: loan_type
+
+	column product_name
+		dataType: string
+		lineageTag: 856046a4-7fad-484a-ab65-e66eb878d405
+		summarizeBy: none
+		sourceColumn: product_name
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\DimProduct.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"loan_type", type text}, {"product_name", type text}}, "en-US")
+				in
+				    Typed
+

@@ -1,0 +1,258 @@
+createOrReplace
+
+	expression DataFolder = "SET_DATA_FOLDER_BEFORE_REFRESH" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+	table FactOutcomes
+
+		measure 'Applications' = COALESCE(SUM(FactOutcomes[applications_count]), 0)
+			formatString: #,0
+
+		measure 'Decisions' = COALESCE(SUM(FactOutcomes[decisions_count]), 0)
+			formatString: #,0
+
+		measure 'Approvals' = COALESCE(SUM(FactOutcomes[approvals_count]), 0)
+			formatString: #,0
+
+		measure 'Originations' = COALESCE(SUM(FactOutcomes[n1]), 0)
+			formatString: #,0
+
+		measure 'Denied' = COALESCE(SUM(FactOutcomes[n3]), 0)
+			formatString: #,0
+
+		measure 'Withdrawn' = COALESCE(SUM(FactOutcomes[n4]), 0)
+			formatString: #,0
+
+		measure 'Incomplete' = COALESCE(SUM(FactOutcomes[n5]), 0)
+			formatString: #,0
+
+		measure 'Approved Not Accepted' = COALESCE(SUM(FactOutcomes[n2]), 0)
+			formatString: #,0
+
+		measure 'Denial Rate' = IF([Decisions] >= 30, DIVIDE([Denied], [Decisions]), BLANK())
+			formatString: 0.00%
+
+		measure 'Approval Rate' = IF([Decisions] >= 30, DIVIDE([Approvals], [Decisions]), BLANK())
+			formatString: 0.00%
+
+		measure 'Origination Share' = IF([Applications] >= 30, DIVIDE([Originations], [Applications]), BLANK())
+			formatString: 0.00%
+
+		measure 'Withdrawal Share' = IF([Applications] >= 30, DIVIDE([Withdrawn], [Applications]), BLANK())
+			formatString: 0.00%
+
+		measure 'Incomplete Share' = IF([Applications] >= 30, DIVIDE([Incomplete], [Applications]), BLANK())
+			formatString: 0.00%
+
+		measure 'Approved Not Accepted Share' = IF([Approvals] >= 30, DIVIDE([Approved Not Accepted], [Approvals]), BLANK())
+			formatString: 0.00%
+
+		measure 'Decision Rate Status' = SWITCH(TRUE(), [Decisions] = 0, "No decision population", [Decisions] < 30, "Rate withheld: fewer than 30 decisions", "Reported")
+
+		measure 'Application Rate Status' = SWITCH(TRUE(), [Applications] = 0, "No application population", [Applications] < 30, "Rate withheld: fewer than 30 applications", "Reported")
+
+		measure 'Approval Share Status' = SWITCH(TRUE(), [Approvals] = 0, "No approval population", [Approvals] < 30, "Rate withheld: fewer than 30 approvals", "Reported")
+
+		measure 'Coverage Records' = SUM(StatewideCoverage[numerator])
+			formatString: #,0
+
+		measure 'Coverage Originations' = IF(HASONEVALUE(StatewideCoverage[field]), MAX(StatewideCoverage[denominator]), BLANK())
+			formatString: #,0
+
+		measure 'Coverage Share' = IF(HASONEVALUE(StatewideCoverage[field]), DIVIDE([Coverage Records], [Coverage Originations]), BLANK())
+			formatString: 0.00%
+
+		column activity_year
+			dataType: string
+			summarizeBy: none
+			sourceColumn: activity_year
+
+		column state_code
+			dataType: string
+			summarizeBy: none
+			sourceColumn: state_code
+
+		column n1
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n1
+
+		column n2
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n2
+
+		column n3
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n3
+
+		column n4
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n4
+
+		column n5
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n5
+
+		column n6
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n6
+
+		column n7
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n7
+
+		column n8
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n8
+
+		column lei
+			dataType: string
+			summarizeBy: none
+			sourceColumn: lei
+
+		column loan_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: loan_type
+
+		column applications_count
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: applications
+
+		column decisions_count
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: decisions
+
+		column approvals_count
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: approvals
+
+		column lender_key
+			dataType: string
+			summarizeBy: none
+			sourceColumn: lender_key
+
+		partition FactOutcomes = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\FactOutcomes.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"activity_year", type text}, {"state_code", type text}, {"n1", Int64.Type}, {"n2", Int64.Type}, {"n3", Int64.Type}, {"n4", Int64.Type}, {"n5", Int64.Type}, {"n6", Int64.Type}, {"n7", Int64.Type}, {"n8", Int64.Type}, {"lei", type text}, {"loan_type", type text}, {"applications", Int64.Type}, {"decisions", Int64.Type}, {"approvals", Int64.Type}, {"lender_key", type text}}, "en-US")
+				in
+				    Typed
+
+	table DimLender
+
+		column activity_year
+			dataType: string
+			summarizeBy: none
+			sourceColumn: activity_year
+
+		column lei
+			dataType: string
+			summarizeBy: none
+			sourceColumn: lei
+
+		column respondent_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: respondent_name
+
+		column agency_code
+			dataType: string
+			summarizeBy: none
+			sourceColumn: agency_code
+
+		column lender_key
+			dataType: string
+			summarizeBy: none
+			sourceColumn: lender_key
+
+		partition DimLender = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\DimLender.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"activity_year", type text}, {"lei", type text}, {"respondent_name", type text}, {"agency_code", type text}, {"lender_key", type text}}, "en-US")
+				in
+				    Typed
+
+	table DimProduct
+
+		column loan_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: loan_type
+
+		column product_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: product_name
+
+		partition DimProduct = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\DimProduct.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"loan_type", type text}, {"product_name", type text}}, "en-US")
+				in
+				    Typed
+
+	table StatewideCoverage
+
+		column field
+			dataType: string
+			summarizeBy: none
+			sourceColumn: field
+
+		column value_status
+			dataType: string
+			summarizeBy: none
+			sourceColumn: value_status
+
+		column numerator
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: numerator
+
+		column denominator
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: denominator
+
+		column share
+			dataType: double
+			summarizeBy: none
+			sourceColumn: share
+
+		partition StatewideCoverage = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\StatewideCoverage.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"field", type text}, {"value_status", type text}, {"numerator", Int64.Type}, {"denominator", Int64.Type}, {"share", type number}}, "en-US")
+				in
+				    Typed
+
+	relationship Lender
+		fromColumn: FactOutcomes.lender_key
+		toColumn: DimLender.lender_key
+		crossFilteringBehavior: oneDirection
+
+	relationship Product
+		fromColumn: FactOutcomes.loan_type
+		toColumn: DimProduct.loan_type
+		crossFilteringBehavior: oneDirection

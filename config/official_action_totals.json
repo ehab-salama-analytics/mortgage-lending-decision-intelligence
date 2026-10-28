@@ -1,0 +1,39 @@
+{
+  "observed_on": "2026-10-27",
+  "source_url": "https://ffiec.cfpb.gov/data-browser/data/2025?category=states&items=DE&actions_taken=1,2,3,4,5,6,7,8&getDetails=1",
+  "capture_method": "Transcribed from visible official summary; browser text preserved in docs/evidence/official_summary_browser.txt",
+  "actions": {
+    "1": {
+      "count": 27033,
+      "amount": 8050495000
+    },
+    "2": {
+      "count": 1161,
+      "amount": 287295000
+    },
+    "3": {
+      "count": 8294,
+      "amount": 1594900000
+    },
+    "4": {
+      "count": 6159,
+      "amount": 1889515000
+    },
+    "5": {
+      "count": 3025,
+      "amount": 727135000
+    },
+    "6": {
+      "count": 9226,
+      "amount": 2937810000
+    },
+    "7": {
+      "count": 35,
+      "amount": 8885000
+    },
+    "8": {
+      "count": 250,
+      "amount": 90940000
+    }
+  }
+}

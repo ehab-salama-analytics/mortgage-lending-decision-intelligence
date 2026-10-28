@@ -1,0 +1,8 @@
+relationship Lender
+	fromColumn: FactOutcomes.lender_key
+	toColumn: DimLender.lender_key
+
+relationship Product
+	fromColumn: FactOutcomes.loan_type
+	toColumn: DimProduct.loan_type
+

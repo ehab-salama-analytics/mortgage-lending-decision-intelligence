@@ -1,0 +1,20 @@
+// Execute in Desktop DAX query view after adding model measures.
+EVALUATE
+ROW(
+    "Applications", [Applications],
+    "Decisions", [Decisions],
+    "Approvals", [Approvals],
+    "Originations", [Originations],
+    "Denied", [Denied],
+    "Denial Rate", [Denial Rate],
+    "Origination Share", [Origination Share]
+)
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    DimProduct[product_name],
+    "Applications", [Applications],
+    "Decisions", [Decisions],
+    "Denial Rate", [Denial Rate],
+    "Status", [Decision Rate Status]
+)

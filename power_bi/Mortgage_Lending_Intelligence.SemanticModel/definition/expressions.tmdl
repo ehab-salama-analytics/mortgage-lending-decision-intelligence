@@ -1,0 +1,5 @@
+expression DataFolder = "SET_DATA_FOLDER_BEFORE_REFRESH" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 6fe6a7d9-78e3-46f6-924c-eaf1e8a570e3
+
+	annotation PBI_ResultType = Text
+

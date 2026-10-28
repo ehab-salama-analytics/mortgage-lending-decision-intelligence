@@ -1,0 +1,43 @@
+table DimLender
+	lineageTag: e7472e3f-bc30-4dd5-9aa6-2cd507974a0a
+
+	column activity_year
+		dataType: string
+		lineageTag: 2b234534-8f8d-4cac-a806-ca755ef22e10
+		summarizeBy: none
+		sourceColumn: activity_year
+
+	column lei
+		dataType: string
+		lineageTag: 36ec38f1-8274-4208-b536-c71d7fc00f53
+		summarizeBy: none
+		sourceColumn: lei
+
+	column respondent_name
+		dataType: string
+		lineageTag: c75f952d-a990-4a6b-b94e-fb43a2415687
+		summarizeBy: none
+		sourceColumn: respondent_name
+
+	column agency_code
+		dataType: string
+		lineageTag: efedd4ef-d184-498b-84d0-371651a5abe3
+		summarizeBy: none
+		sourceColumn: agency_code
+
+	column lender_key
+		dataType: string
+		lineageTag: fb762c1b-c0e5-407d-b793-410f0efc6280
+		summarizeBy: none
+		sourceColumn: lender_key
+
+	partition DimLender = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\DimLender.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"activity_year", type text}, {"lei", type text}, {"respondent_name", type text}, {"agency_code", type text}, {"lender_key", type text}}, "en-US")
+				in
+				    Typed
+

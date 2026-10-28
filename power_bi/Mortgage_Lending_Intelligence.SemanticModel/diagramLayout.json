@@ -1,0 +1,74 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 618.38305001469371,
+            "y": -32.844697959845007
+          },
+          "nodeIndex": "DimLender",
+          "nodeLineageTag": "e7472e3f-bc30-4dd5-9aa6-2cd507974a0a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 33.140412819753067
+          },
+          "nodeIndex": "DimProduct",
+          "nodeLineageTag": "90557152-c627-4106-9005-688e379cd2be",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.20156119318523,
+            "y": -50
+          },
+          "nodeIndex": "FactOutcomes",
+          "nodeLineageTag": "08984b55-10f7-4518-8c5c-d04cae205e37",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852.38305001469371,
+            "y": 50
+          },
+          "nodeIndex": "StatewideCoverage",
+          "nodeLineageTag": "24146e9a-1e8e-44db-b888-5a26b06bf67f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

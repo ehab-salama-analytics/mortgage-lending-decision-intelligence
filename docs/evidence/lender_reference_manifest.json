@@ -1,0 +1,9 @@
+{
+  "source_url": "https://files.ffiec.cfpb.gov/static-data/snapshot/2025/2025_public_ts_csv.zip",
+  "retrieval_date": "2026-10-27",
+  "sha256": "6d4157afc236b25c28913b58c2b7460c26bb2395f24aa519570d0e23ae1f87e6",
+  "bytes": 194185,
+  "national_ts_rows": 4782,
+  "delaware_lenders": 558,
+  "note": "lar_count is national institution volume, not Delaware volume; excluded from dimension."
+}

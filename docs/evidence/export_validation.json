@@ -1,0 +1,22 @@
+{
+  "result": "PASS",
+  "manifest_files_verified": 5,
+  "csv_roundtrip_checks": {
+    "outcome_rates": {
+      "rows": 3792,
+      "result": "PASS"
+    },
+    "outcome_populations": {
+      "rows": 632,
+      "result": "PASS"
+    },
+    "origination_field_coverage": {
+      "rows": 35,
+      "result": "PASS"
+    },
+    "dim_lender": {
+      "rows": 558,
+      "result": "PASS"
+    }
+  }
+}

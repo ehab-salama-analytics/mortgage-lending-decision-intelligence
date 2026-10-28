@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "fact_rows": 627,
+  "lender_dimension_rows": 558,
+  "join_multiplied_rows": 0,
+  "unmatched_lenders": 0,
+  "statewide_totals": {
+    "n1": 10623,
+    "n2": 236,
+    "n3": 1010,
+    "n4": 1970,
+    "n5": 237,
+    "n6": 5840,
+    "n7": 32,
+    "n8": 227,
+    "applications": 14076,
+    "decisions": 11869,
+    "approvals": 10859
+  },
+  "note": "Python data-model preparation checks only; DAX execution and Desktop interaction tests pending."
+}

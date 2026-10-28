@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "errors": [],
+  "official_action_counts_and_amounts_matched": true,
+  "source_rows": 55183,
+  "matched_lenders": 558,
+  "filer_lookup_missing_leis": [
+    "2549004XDCE3LGQW7H72",
+    "2549005FUF02T1IFCA22",
+    "254900CTT87ZKAUTIJ37",
+    "254900J2RKTTDJSUWD76",
+    "9845001ADACA7A75EE02",
+    "9845005BP6974AE5D838",
+    "984500CBWD5B079K2C86",
+    "984500FAD1FB7FEGTE82",
+    "984500RF83EA742B5589"
+  ],
+  "rows_for_missing_leis": 44,
+  "reference_used": "Snapshot TS; filer API is diagnostic only"
+}

@@ -1,0 +1,186 @@
+table FactOutcomes
+	lineageTag: 08984b55-10f7-4518-8c5c-d04cae205e37
+
+	measure Applications = COALESCE(SUM(FactOutcomes[applications_count]), 0)
+		formatString: #,0
+		lineageTag: 6769c2b1-b478-42db-a88e-867cdfcb4878
+
+	measure Decisions = COALESCE(SUM(FactOutcomes[decisions_count]), 0)
+		formatString: #,0
+		lineageTag: 4dd08900-6799-456d-a6b3-989dd35c0fdb
+
+	measure Approvals = COALESCE(SUM(FactOutcomes[approvals_count]), 0)
+		formatString: #,0
+		lineageTag: 869428b1-f40b-42be-885d-876c9f74ecd8
+
+	measure Originations = COALESCE(SUM(FactOutcomes[n1]), 0)
+		formatString: #,0
+		lineageTag: 9a63e588-e4aa-4fd4-954f-f127d9f022b1
+
+	measure Denied = COALESCE(SUM(FactOutcomes[n3]), 0)
+		formatString: #,0
+		lineageTag: e12781e5-59f5-496f-aeab-9fc4c282d9c4
+
+	measure Withdrawn = COALESCE(SUM(FactOutcomes[n4]), 0)
+		formatString: #,0
+		lineageTag: 207bb6e0-70d9-4606-8329-e39d995d9486
+
+	measure Incomplete = COALESCE(SUM(FactOutcomes[n5]), 0)
+		formatString: #,0
+		lineageTag: e8dfb6ec-c929-40f5-aea4-95c2b0c8c9fb
+
+	measure 'Approved Not Accepted' = COALESCE(SUM(FactOutcomes[n2]), 0)
+		formatString: #,0
+		lineageTag: efaab7a8-719f-49f8-b23b-9a0f58ed80ea
+
+	measure 'Denial Rate' = IF([Decisions] >= 30, DIVIDE([Denied], [Decisions]), BLANK())
+		formatString: 0.00%
+		lineageTag: 89b7c9fc-2f0b-41bd-aaf8-1238d40b0255
+
+	measure 'Approval Rate' = IF([Decisions] >= 30, DIVIDE([Approvals], [Decisions]), BLANK())
+		formatString: 0.00%
+		lineageTag: 09458298-e359-4722-9e9a-14cdfcf33a83
+
+	measure 'Origination Share' = IF([Applications] >= 30, DIVIDE([Originations], [Applications]), BLANK())
+		formatString: 0.00%
+		lineageTag: 5e1a3483-b8ff-4600-b10b-831e9ec5086c
+
+	measure 'Withdrawal Share' = IF([Applications] >= 30, DIVIDE([Withdrawn], [Applications]), BLANK())
+		formatString: 0.00%
+		lineageTag: 4ab0eb43-5c65-4e3a-9318-1216988e213f
+
+	measure 'Incomplete Share' = IF([Applications] >= 30, DIVIDE([Incomplete], [Applications]), BLANK())
+		formatString: 0.00%
+		lineageTag: 4412f4cc-4a23-48bf-9356-cf5174039079
+
+	measure 'Approved Not Accepted Share' = IF([Approvals] >= 30, DIVIDE([Approved Not Accepted], [Approvals]), BLANK())
+		formatString: 0.00%
+		lineageTag: 93217b80-3930-4678-82c5-a499ba3e5d47
+
+	measure 'Decision Rate Status' = SWITCH(TRUE(), [Decisions] = 0, "No decision population", [Decisions] < 30, "Rate withheld: fewer than 30 decisions", "Reported")
+		lineageTag: 4aa4e998-0042-449f-b2ce-e6d0697a7e40
+
+	measure 'Application Rate Status' = SWITCH(TRUE(), [Applications] = 0, "No application population", [Applications] < 30, "Rate withheld: fewer than 30 applications", "Reported")
+		lineageTag: 472fa4e0-32b5-4a9f-a181-17b099d1ac3d
+
+	measure 'Approval Share Status' = SWITCH(TRUE(), [Approvals] = 0, "No approval population", [Approvals] < 30, "Rate withheld: fewer than 30 approvals", "Reported")
+		lineageTag: ffa23489-558f-4aa2-b468-665d5d5e78b2
+
+	measure 'Coverage Records' = SUM(StatewideCoverage[numerator])
+		formatString: #,0
+		lineageTag: 34047aff-a6d9-4d0d-adc9-70affdce2913
+
+	measure 'Coverage Originations' = IF(HASONEVALUE(StatewideCoverage[field]), MAX(StatewideCoverage[denominator]), BLANK())
+		formatString: #,0
+		lineageTag: b5aeeecc-a4cd-45ab-8c48-62ceab656ce7
+
+	measure 'Coverage Share' = IF(HASONEVALUE(StatewideCoverage[field]), DIVIDE([Coverage Records], [Coverage Originations]), BLANK())
+		formatString: 0.00%
+		lineageTag: 6aa4e82c-198e-4739-a314-ef34eed62b61
+
+	column activity_year
+		dataType: string
+		lineageTag: d3338b16-cd4f-48e3-b266-e85dfd9e3002
+		summarizeBy: none
+		sourceColumn: activity_year
+
+	column state_code
+		dataType: string
+		lineageTag: 345e7f86-07f1-4e45-bfa9-2fe0f540142f
+		summarizeBy: none
+		sourceColumn: state_code
+
+	column n1
+		dataType: int64
+		lineageTag: 0cd90b43-d9bc-4129-b5e4-9b522cca1976
+		summarizeBy: none
+		sourceColumn: n1
+
+	column n2
+		dataType: int64
+		lineageTag: 4c2acfd7-1e59-4d49-87de-b20ea6a81f92
+		summarizeBy: none
+		sourceColumn: n2
+
+	column n3
+		dataType: int64
+		lineageTag: bd622969-3951-4a16-94f0-eb6392eb2eac
+		summarizeBy: none
+		sourceColumn: n3
+
+	column n4
+		dataType: int64
+		lineageTag: c9c0e6de-a4ff-4984-a7f1-46dbb648426a
+		summarizeBy: none
+		sourceColumn: n4
+
+	column n5
+		dataType: int64
+		lineageTag: f7ddf75a-a49d-459b-8d25-dadaf6b029a3
+		summarizeBy: none
+		sourceColumn: n5
+
+	column n6
+		dataType: int64
+		lineageTag: 1d7b77b2-69ed-410a-b104-ebd1d8c96066
+		summarizeBy: none
+		sourceColumn: n6
+
+	column n7
+		dataType: int64
+		lineageTag: 1db6ebd9-99e1-44d4-92bd-90fa8b81be8b
+		summarizeBy: none
+		sourceColumn: n7
+
+	column n8
+		dataType: int64
+		lineageTag: a2c702d6-a660-43d8-97ea-d59d34cc577b
+		summarizeBy: none
+		sourceColumn: n8
+
+	column lei
+		dataType: string
+		lineageTag: cf779770-46fc-4e52-9b3d-b8097c59765d
+		summarizeBy: none
+		sourceColumn: lei
+
+	column loan_type
+		dataType: string
+		lineageTag: d05f60cd-0507-4cca-b9b5-375fc974e341
+		summarizeBy: none
+		sourceColumn: loan_type
+
+	column applications_count
+		dataType: int64
+		lineageTag: 43bb6214-d13f-4487-a91c-bf907d20ba01
+		summarizeBy: none
+		sourceColumn: applications
+
+	column decisions_count
+		dataType: int64
+		lineageTag: be054de6-ed8f-4e4c-a0ad-18d0b855b7f7
+		summarizeBy: none
+		sourceColumn: decisions
+
+	column approvals_count
+		dataType: int64
+		lineageTag: 537378f6-33f0-48bb-9968-202270021e04
+		summarizeBy: none
+		sourceColumn: approvals
+
+	column lender_key
+		dataType: string
+		lineageTag: c9706b62-aeb7-4d3c-8959-adea2ee48022
+		summarizeBy: none
+		sourceColumn: lender_key
+
+	partition FactOutcomes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "\FactOutcomes.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"activity_year", type text}, {"state_code", type text}, {"n1", Int64.Type}, {"n2", Int64.Type}, {"n3", Int64.Type}, {"n4", Int64.Type}, {"n5", Int64.Type}, {"n6", Int64.Type}, {"n7", Int64.Type}, {"n8", Int64.Type}, {"lei", type text}, {"loan_type", type text}, {"applications", Int64.Type}, {"decisions", Int64.Type}, {"approvals", Int64.Type}, {"lender_key", type text}}, "en-US")
+				in
+				    Typed
+

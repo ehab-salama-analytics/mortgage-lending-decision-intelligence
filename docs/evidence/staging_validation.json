@@ -1,0 +1,77 @@
+{
+  "result": "PASS",
+  "rows_compared": 55183,
+  "failures": {},
+  "exclusions": {
+    "loan_purpose": 28112,
+    "included": 20175,
+    "occupancy_type": 3939,
+    "lien_status": 634,
+    "construction_method": 2011,
+    "reverse_mortgage": 131,
+    "open_end_line_of_credit": 171,
+    "business_or_commercial_purpose": 10
+  },
+  "numeric_status_counts": {
+    "loan_amount": {
+      "numeric": 55183
+    },
+    "income": {
+      "not_applicable": 11153,
+      "numeric": 44030
+    },
+    "property_value": {
+      "numeric": 44224,
+      "not_applicable": 10257,
+      "exempt": 702
+    },
+    "interest_rate": {
+      "numeric": 37100,
+      "not_applicable": 17383,
+      "exempt": 700
+    },
+    "rate_spread": {
+      "not_applicable": 28668,
+      "numeric": 25812,
+      "exempt": 703
+    },
+    "total_loan_costs": {
+      "not_applicable": 26800,
+      "numeric": 27681,
+      "exempt": 702
+    },
+    "total_points_and_fees": {
+      "not_applicable": 54240,
+      "numeric": 241,
+      "exempt": 702
+    },
+    "origination_charges": {
+      "not_applicable": 26702,
+      "numeric": 27774,
+      "exempt": 707
+    },
+    "discount_points": {
+      "not_applicable": 26739,
+      "blank": 13722,
+      "numeric": 14015,
+      "exempt": 707
+    },
+    "lender_credits": {
+      "not_applicable": 26691,
+      "blank": 19020,
+      "numeric": 8765,
+      "exempt": 707
+    },
+    "loan_term": {
+      "numeric": 54059,
+      "exempt": 698,
+      "not_applicable": 426
+    }
+  },
+  "warnings": [
+    "Official summary reconciliation is checked separately by validate_source_reference.py",
+    "LTV alias semantics pending",
+    "Public identical rows retained; not deduplicated",
+    "DTI/age/categorical values preserved raw; detailed typing is a later stage"
+  ]
+}

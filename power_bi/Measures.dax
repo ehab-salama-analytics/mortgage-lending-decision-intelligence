@@ -1,0 +1,41 @@
+// Create these measures individually on FactOutcomes. Counts are additive.
+Applications = COALESCE(SUM(FactOutcomes[applications_count]), 0)
+
+Decisions = COALESCE(SUM(FactOutcomes[decisions_count]), 0)
+
+Approvals = COALESCE(SUM(FactOutcomes[approvals_count]), 0)
+
+Originations = COALESCE(SUM(FactOutcomes[n1]), 0)
+
+Denied = COALESCE(SUM(FactOutcomes[n3]), 0)
+
+Withdrawn = COALESCE(SUM(FactOutcomes[n4]), 0)
+
+Incomplete = COALESCE(SUM(FactOutcomes[n5]), 0)
+
+Approved Not Accepted = COALESCE(SUM(FactOutcomes[n2]), 0)
+
+Denial Rate = IF([Decisions] >= 30, DIVIDE([Denied], [Decisions]), BLANK())
+
+Approval Rate = IF([Decisions] >= 30, DIVIDE([Approvals], [Decisions]), BLANK())
+
+Origination Share = IF([Applications] >= 30, DIVIDE([Originations], [Applications]), BLANK())
+
+Withdrawal Share = IF([Applications] >= 30, DIVIDE([Withdrawn], [Applications]), BLANK())
+
+Incomplete Share = IF([Applications] >= 30, DIVIDE([Incomplete], [Applications]), BLANK())
+
+Approved Not Accepted Share = IF([Approvals] >= 30, DIVIDE([Approved Not Accepted], [Approvals]), BLANK())
+
+Decision Rate Status = SWITCH(TRUE(), [Decisions] = 0, "No decision population", [Decisions] < 30, "Rate withheld: fewer than 30 decisions", "Reported")
+
+Application Rate Status = SWITCH(TRUE(), [Applications] = 0, "No application population", [Applications] < 30, "Rate withheld: fewer than 30 applications", "Reported")
+
+Approval Share Status = SWITCH(TRUE(), [Approvals] = 0, "No approval population", [Approvals] < 30, "Rate withheld: fewer than 30 approvals", "Reported")
+
+// Field coverage is statewide and intentionally disconnected from lender/product filters.
+Coverage Records = SUM(StatewideCoverage[numerator])
+
+Coverage Originations = IF(HASONEVALUE(StatewideCoverage[field]), MAX(StatewideCoverage[denominator]), BLANK())
+
+Coverage Share = IF(HASONEVALUE(StatewideCoverage[field]), DIVIDE([Coverage Records], [Coverage Originations]), BLANK())

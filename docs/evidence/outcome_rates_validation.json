@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "rate_rows": 3792,
+  "coverage_rows": 35,
+  "display_status_counts": {
+    "small_population": 2903,
+    "reported": 549,
+    "no_population": 340
+  },
+  "failures": {},
+  "method": "Independent CSV reconstruction; every saved rate numerator, denominator, display status and coverage row checked"
+}

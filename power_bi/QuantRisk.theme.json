@@ -1,0 +1,14 @@
+{
+  "name": "QuantRisk Mortgage",
+  "dataColors": [
+    "#147D92",
+    "#24476A",
+    "#E5AA37",
+    "#718096",
+    "#6C8DA6",
+    "#A8C6CF"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#17324D",
+  "tableAccent": "#147D92"
+}

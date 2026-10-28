@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "66b0727775d10616d0c5",
+    "lending",
+    "quality"
+  ],
+  "activePageName": "66b0727775d10616d0c5"
+}

@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-28",
+  "status": "PASS",
+  "scope": "Desktop DAX reconciliation and visual interaction checks; complements independent source validation",
+  "checks": {
+    "statewide": {
+      "applications": 14076,
+      "decisions": 11869,
+      "approvals": 10859,
+      "originations": 10623,
+      "denied": 1010,
+      "denial_rate_percent": 8.50956273
+    },
+    "conventional_visual": {
+      "applications": 9170,
+      "decisions": 7709,
+      "originations": 7118,
+      "denied": 444,
+      "denial_rate_display": "5.76%"
+    },
+    "conventional_fha_multiselect": {
+      "applications": 12549,
+      "decisions": 10602,
+      "originations": 9490,
+      "denied": 905,
+      "denial_rate_display": "8.54%"
+    },
+    "small_lender_visual": {
+      "lender": "A&D MORTGAGE LLC",
+      "decisions": 7,
+      "denied": 0,
+      "rate": "blank",
+      "status_message": "Rate withheld: fewer than 30 decisions"
+    },
+    "empty_intersection": {
+      "lender": "A&D MORTGAGE LLC",
+      "product": "FHA",
+      "applications": 0,
+      "decisions": 0,
+      "rate": "blank"
+    },
+    "quality_independence": "10623 statewide originations unchanged with filters on other pages",
+    "filter_reset": "all totals restored",
+    "rendering": "all three pages inspected without error visuals or clipped page notes"
+  },
+  "not_tested": [
+    "bar cross-highlighting",
+    "PDF export",
+    "Power BI Service deployment"
+  ],
+  "evidence": [
+    "dashboard_overview.png",
+    "dashboard_lending.png",
+    "dashboard_quality.png"
+  ]
+}

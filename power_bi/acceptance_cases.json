@@ -1,0 +1,157 @@
+[
+  {
+    "case": "all",
+    "expected": [
+      {
+        "metric": "approval_rate",
+        "numerator": 10859,
+        "denominator": 11869,
+        "display_rate": 0.914904372735698,
+        "display_status": "reported"
+      },
+      {
+        "metric": "approved_not_accepted_share",
+        "numerator": 236,
+        "denominator": 10859,
+        "display_rate": 0.02173312459710839,
+        "display_status": "reported"
+      },
+      {
+        "metric": "denial_rate",
+        "numerator": 1010,
+        "denominator": 11869,
+        "display_rate": 0.08509562726430196,
+        "display_status": "reported"
+      },
+      {
+        "metric": "incomplete_share",
+        "numerator": 237,
+        "denominator": 14076,
+        "display_rate": 0.016837169650468883,
+        "display_status": "reported"
+      },
+      {
+        "metric": "origination_share",
+        "numerator": 10623,
+        "denominator": 14076,
+        "display_rate": 0.7546888320545609,
+        "display_status": "reported"
+      },
+      {
+        "metric": "withdrawal_share",
+        "numerator": 1970,
+        "denominator": 14076,
+        "display_rate": 0.13995453253765275,
+        "display_status": "reported"
+      }
+    ]
+  },
+  {
+    "case": "conventional",
+    "expected": [
+      {
+        "metric": "approval_rate",
+        "numerator": 7265,
+        "denominator": 7709,
+        "display_rate": 0.942404981190816,
+        "display_status": "reported"
+      },
+      {
+        "metric": "approved_not_accepted_share",
+        "numerator": 147,
+        "denominator": 7265,
+        "display_rate": 0.02023399862353751,
+        "display_status": "reported"
+      },
+      {
+        "metric": "denial_rate",
+        "numerator": 444,
+        "denominator": 7709,
+        "display_rate": 0.05759501880918407,
+        "display_status": "reported"
+      },
+      {
+        "metric": "incomplete_share",
+        "numerator": 181,
+        "denominator": 9170,
+        "display_rate": 0.019738276990185388,
+        "display_status": "reported"
+      },
+      {
+        "metric": "origination_share",
+        "numerator": 7118,
+        "denominator": 9170,
+        "display_rate": 0.776226826608506,
+        "display_status": "reported"
+      },
+      {
+        "metric": "withdrawal_share",
+        "numerator": 1280,
+        "denominator": 9170,
+        "display_rate": 0.1395856052344602,
+        "display_status": "reported"
+      }
+    ]
+  },
+  {
+    "case": "lender_product_small_population",
+    "lei": "03D0JEWFDFUS0SEEKG89",
+    "loan_type": "1",
+    "expected": {
+      "scope": "lender_product",
+      "activity_year": "2025",
+      "state_code": "DE",
+      "lei": "03D0JEWFDFUS0SEEKG89",
+      "loan_type": "1",
+      "metric": "denial_rate",
+      "numerator": 2,
+      "denominator": 28,
+      "display_status": "small_population",
+      "display_rate": null
+    }
+  },
+  {
+    "case": "lender_product_no_population",
+    "lei": "03D0JEWFDFUS0SEEKG89",
+    "loan_type": "2",
+    "expected": {
+      "scope": "lender_product",
+      "activity_year": "2025",
+      "state_code": "DE",
+      "lei": "03D0JEWFDFUS0SEEKG89",
+      "loan_type": "2",
+      "metric": "denial_rate",
+      "numerator": 0,
+      "denominator": 0,
+      "display_status": "no_population",
+      "display_rate": null
+    }
+  },
+  {
+    "case": "lender_product_reported",
+    "lei": "213800QUAI2VH5YM6310",
+    "loan_type": "1",
+    "expected": {
+      "scope": "lender_product",
+      "activity_year": "2025",
+      "state_code": "DE",
+      "lei": "213800QUAI2VH5YM6310",
+      "loan_type": "1",
+      "metric": "denial_rate",
+      "numerator": 2,
+      "denominator": 107,
+      "display_status": "reported",
+      "display_rate": 0.018691588785046728
+    }
+  },
+  {
+    "case": "empty_intersection",
+    "filter": "Use a lender/product combination absent from FactOutcomes",
+    "expected": {
+      "Applications": 0,
+      "Decisions": 0,
+      "Denial Rate": null,
+      "Decision Rate Status": "No decision population"
+    }
+  }
+]

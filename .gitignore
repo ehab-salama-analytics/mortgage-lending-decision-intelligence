@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+data/
+reports/generated/
+*.log
+**/.pbi/
+*.pbix
+.env
+.env.*

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Mortgage_Lending_Intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6452ed7b-93c0-44ad-b442-559569277ddf"
+  }
+}

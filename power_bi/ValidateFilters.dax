@@ -1,0 +1,7 @@
+EVALUATE
+UNION(
+CALCULATETABLE(ROW("Case", "Conventional", "Decisions", [Decisions], "Denied", [Denied], "Rate", FORMAT([Denial Rate], "0.00000000%"), "Blank", ISBLANK([Denial Rate]), "Status", [Decision Rate Status]), DimProduct[loan_type]="1"),
+CALCULATETABLE(ROW("Case", "Small", "Decisions", [Decisions], "Denied", [Denied], "Rate", FORMAT([Denial Rate], "0.00000000%"), "Blank", ISBLANK([Denial Rate]), "Status", [Decision Rate Status]), DimProduct[loan_type]="1", DimLender[lei]="03D0JEWFDFUS0SEEKG89"),
+CALCULATETABLE(ROW("Case", "Zero", "Decisions", [Decisions], "Denied", [Denied], "Rate", FORMAT([Denial Rate], "0.00000000%"), "Blank", ISBLANK([Denial Rate]), "Status", [Decision Rate Status]), DimProduct[loan_type]="2", DimLender[lei]="03D0JEWFDFUS0SEEKG89"),
+CALCULATETABLE(ROW("Case", "Reported", "Decisions", [Decisions], "Denied", [Denied], "Rate", FORMAT([Denial Rate], "0.00000000%"), "Blank", ISBLANK([Denial Rate]), "Status", [Decision Rate Status]), DimProduct[loan_type]="1", DimLender[lei]="213800QUAI2VH5YM6310")
+)

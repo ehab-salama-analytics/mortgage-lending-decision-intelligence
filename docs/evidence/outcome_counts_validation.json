@@ -1,0 +1,6 @@
+{
+  "result": "PASS",
+  "cells_compared": 2371,
+  "cohort_records": 20175,
+  "validation": "Every cell reconstructed independently from raw CSV"
+}
